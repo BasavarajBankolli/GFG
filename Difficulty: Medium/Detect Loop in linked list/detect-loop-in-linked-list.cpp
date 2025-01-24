@@ -43,13 +43,14 @@ class Solution {
     // Function to check if the linked list has a loop.
     bool detectLoop(Node* head) {
         // your code here
-        set<Node*> s;
+        Node *slow = head, *fast = head;
         
-        Node* temp = head;
-        while (temp) {
-            if (s.find(temp) != s.end())return true;
-            s.insert(temp);
-            temp = temp -> next;
+        while (fast && fast->next) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+            
+            if (fast == slow) return true;
+
         }
         
         return false;
