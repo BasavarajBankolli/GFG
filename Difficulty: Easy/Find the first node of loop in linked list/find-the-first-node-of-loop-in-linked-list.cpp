@@ -49,12 +49,9 @@ class Solution {
     Node* findFirstNode(Node* head) {
         // your code here
         unordered_map <Node*, bool> ref;
-        
-        int i = 0;
         Node* temp = head;
         
         while (temp) {
-            i++;
             if (ref.find(temp) != ref.end()){
                 return temp;
             }
