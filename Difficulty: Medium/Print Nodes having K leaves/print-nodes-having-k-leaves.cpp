@@ -9,13 +9,12 @@ struct Node
 class Solution {
   public:
     /*You are required to complete below method */
-    vector<int> res;
-    int postOrder(Node* node, int k) {
+    int postOrder(Node* node, int k, vector<int> &res) {
         if(!node) return 0;
         
         if (isLeaf(node)) return 1;
         
-        int tot = postOrder(node -> left, k) + postOrder(node -> right, k);
+        int tot = postOrder(node -> left, k, res) + postOrder(node -> right, k, res);
         
         if (tot == k) res.push_back(node -> data);
         
@@ -23,7 +22,8 @@ class Solution {
     }
 
     vector<int> btWithKleaves(Node *ptr, int k) {
-        postOrder(ptr, k);
+        vector<int> res;
+        postOrder(ptr, k, res);
         
         if (res.empty()) return {-1};
         
